@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card';
 
-function Main(props) {
-  const {placesFound, locations} = props;
+function Main({placesFound, locations}) {
   const placesShown = [
     {name: 'place1', isPremium: true},
     {name: 'place2', isPremium: false},
