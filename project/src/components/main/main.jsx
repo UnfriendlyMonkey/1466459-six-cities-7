@@ -19,7 +19,7 @@ function Main({placesFound, locations}) {
           <ul className="locations__list tabs__list">
             {
               locations.map((item, i) => (
-                <li key={item + i} className="locations__item">
+                <li key={item} className="locations__item">
                   <a className="locations__item-link tabs__item" href="#">
                     <span>{item}</span>
                   </a>
@@ -50,7 +50,7 @@ function Main({placesFound, locations}) {
             </form>
             <div className="cities__places-list places__list tabs__content">
               {placesShown.map((place, i) => (
-                <PlaceCard key={place.name + i} isPremium={place.isPremium}/>
+                <PlaceCard key={place.name} isPremium={place.isPremium}/>
               ))}
             </div>
           </section>
