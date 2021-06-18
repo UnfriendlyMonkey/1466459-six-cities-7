@@ -66,7 +66,7 @@ function Main(props) {
 
 Main.propTypes = {
   locations: PropTypes.arrayOf(
-    PropTypes.string
+    PropTypes.string,
   ).isRequired,
   placesFound: PropTypes.number,
 };
