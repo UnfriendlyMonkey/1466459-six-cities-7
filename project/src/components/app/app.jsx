@@ -1,11 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import Main from '../main/main';
+import Login from '../login/login';
+import Property from '../property/property';
+import Favorites from '../favorites/favorites';
+import Page404 from '../page404/page404';
 
 function App({placesFound, locations}) {
 
+  let pageClassName = '';
+  switch (window.location.pathname) {
+    case '/':
+      pageClassName = 'page page--gray page--main';
+      break;
+    case '/login':
+      pageClassName = 'page page--gray page--login';
+      break;
+    case '/favorites':
+      pageClassName = 'page page--favorites';
+      break;
+    default:
+      pageClassName = 'page';
+  }
+
   return (
-    <div className="page page--gray page--main">
+    <div className={pageClassName}>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -33,7 +54,25 @@ function App({placesFound, locations}) {
           </div>
         </div>
       </header>
-      <Main placesFound={placesFound} locations={locations} />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={AppRoute.MAIN}>
+            <Main placesFound={placesFound} locations={locations} />
+          </Route>
+          <Route exact path={AppRoute.LOGIN}>
+            <Login />
+          </Route>
+          <Route exact path={AppRoute.FAVORITES}>
+            <Favorites />
+          </Route>
+          <Route exact path={AppRoute.PROPERTY}>
+            <Property />
+          </Route>
+          <Route>
+            <Page404 />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
