@@ -83,7 +83,9 @@ App.propTypes = {
     PropTypes.string,
   ).isRequired,
   placesFound: PropTypes.number,
-  offers: offerType.isRequired,
+  offers: PropTypes.arrayOf(
+    offerType,
+  ).isRequired,
 };
 
 export default App;
