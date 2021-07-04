@@ -64,7 +64,7 @@ function App({placesFound, locations, offers}) {
             <Login />
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
-            <Favorites />
+            <Favorites offers={offers}/>
           </Route>
           <Route exact path={AppRoute.PROPERTY}>
             <Property />
