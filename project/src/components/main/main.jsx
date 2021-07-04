@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card';
+import OffersList from '../offers-list/offers-list';
+import {offerType} from '../../types/offers';
 
-function Main({placesFound, locations}) {
-  const placesShown = [
-    {name: 'place1', isPremium: true},
-    {name: 'place2', isPremium: false},
-    {name: 'place3', isPremium: false},
-    {name: 'place4', isPremium: true},
-    {name: 'place5', isPremium: false},
-  ];
+function Main({placesFound, locations, offers}) {
 
   return (
     <main className="page__main page__main--index">
@@ -18,7 +12,7 @@ function Main({placesFound, locations}) {
         <section className="locations container">
           <ul className="locations__list tabs__list">
             {
-              locations.map((item, i) => (
+              locations.map((item) => (
                 <li key={item} className="locations__item">
                   <a className="locations__item-link tabs__item" href="#">
                     <span>{item}</span>
@@ -48,11 +42,7 @@ function Main({placesFound, locations}) {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {placesShown.map((place, i) => (
-                <PlaceCard key={place.name} isPremium={place.isPremium}/>
-              ))}
-            </div>
+            <OffersList offers={offers}/>
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
@@ -68,6 +58,9 @@ Main.propTypes = {
     PropTypes.string,
   ).isRequired,
   placesFound: PropTypes.number,
+  offers: PropTypes.arrayOf(
+    offerType,
+  ).isRequired,
 };
 
 export default Main;
