@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {offerType} from '../../types/offer';
+import {offerType} from '../../types/offers';
 import PlaceCard from '../place-card/place-card';
 
 function OffersList (props) {
