@@ -197,7 +197,7 @@ const offers = [
       'name': 'Danila',
     },
     'id': 5,
-    'images': ['studio-01.jpg', 'img/1.png', 'img/2.png'],
+    'images': ['img/studio-01.jpg', 'img/1.png', 'img/2.png'],
     'isFavorite': true,
     'isPremium': false,
     'location': {
@@ -206,7 +206,7 @@ const offers = [
       'zoom': 8,
     },
     'maxAdults': 2,
-    'previewImage': 'studio-01.jpg',
+    'previewImage': 'img/studio-01.jpg',
     'price': 80,
     'rating': 3.2,
     'title': 'Wood and stone place',
