@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
 
 function PlaceCard(props) {
-  const {offer} = props;
-  const {isPremium, price, previewImage, rating, title, type, isFavorite} = offer;
+  const {offer, onHover} = props;
+  const {isPremium, price, previewImage, rating, title, type, isFavorite, id} = offer;
   const premiumMark = (
     <div className="place-card__mark">
       <span>Premium</span>
@@ -13,8 +14,12 @@ function PlaceCard(props) {
     return isFavorite ? `${prefix} place-card__bookmark-button--active` : prefix;
   };
 
+  const handleHover = () => {
+    onHover(id);
+  };
+
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={handleHover}>
       {isPremium && premiumMark}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
@@ -51,6 +56,7 @@ function PlaceCard(props) {
 
 PlaceCard.propTypes = {
   offer: offerType,
+  onHover: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
