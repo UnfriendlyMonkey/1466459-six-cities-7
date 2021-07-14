@@ -5,6 +5,8 @@ import {offerType} from '../../types/offers';
 
 function Main({placesFound, locations, offers}) {
 
+  const activeCity = 'Amsterdam';
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -14,7 +16,7 @@ function Main({placesFound, locations, offers}) {
             {
               locations.map((item) => (
                 <li key={item} className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#">
+                  <a className={item === activeCity ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} href="#">
                     <span>{item}</span>
                   </a>
                 </li>))
@@ -42,7 +44,7 @@ function Main({placesFound, locations, offers}) {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <OffersList offers={offers}/>
+            <OffersList offers={offers.filter((offer) => offer.city.name === activeCity)}/>
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
