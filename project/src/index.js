@@ -12,7 +12,6 @@ const Setting = {
 ReactDOM.render(
   <React.StrictMode>
     <App
-      placesFound={Setting.PLACES_FOUND}
       locations={Setting.LOCATIONS}
       offers={offers}
     />

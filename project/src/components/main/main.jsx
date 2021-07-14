@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list';
 import {offerType} from '../../types/offers';
 
-function Main({placesFound, locations, offers}) {
+function Main({locations, offers}) {
 
-  const activeCity = 'Amsterdam';
+  const [activeCity, setActiveCity] = useState('Amsterdam');
+  const placesFound = offers.filter((offer) => offer.city.name === activeCity).length;
 
   return (
     <main className="page__main page__main--index">
@@ -16,7 +17,13 @@ function Main({placesFound, locations, offers}) {
             {
               locations.map((item) => (
                 <li key={item} className="locations__item">
-                  <a className={item === activeCity ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} href="#">
+                  <a
+                    className={item === activeCity ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}
+                    href="#"
+                    onClick={({target}) => {
+                      setActiveCity(target.textContent);
+                    }}
+                  >
                     <span>{item}</span>
                   </a>
                 </li>))
@@ -28,7 +35,7 @@ function Main({placesFound, locations, offers}) {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{placesFound} places to stay in Amsterdam</b>
+            <b className="places__found">{placesFound} places to stay in {activeCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -37,7 +44,7 @@ function Main({placesFound, locations, offers}) {
                   <use xlinkHref="#icon-arrow-select"></use>
                 </svg>
               </span>
-              <ul className="places__options places__options--custom places__options--opened">
+              <ul className="places__options places__options--custom">
                 <li className="places__option places__option--active" tabIndex="0">Popular</li>
                 <li className="places__option" tabIndex="0">Price: low to high</li>
                 <li className="places__option" tabIndex="0">Price: high to low</li>
@@ -59,7 +66,6 @@ Main.propTypes = {
   locations: PropTypes.arrayOf(
     PropTypes.string,
   ).isRequired,
-  placesFound: PropTypes.number,
   offers: PropTypes.arrayOf(
     offerType,
   ).isRequired,

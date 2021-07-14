@@ -9,7 +9,7 @@ import Favorites from '../favorites/favorites';
 import Page404 from '../page404/page404';
 import {offerType} from '../../types/offers';
 
-function App({placesFound, locations, offers}) {
+function App({locations, offers}) {
 
   let pageClassName = '';
   switch (window.location.pathname) {
@@ -58,7 +58,7 @@ function App({placesFound, locations, offers}) {
       <BrowserRouter>
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            <Main placesFound={placesFound} locations={locations} offers={offers} />
+            <Main locations={locations} offers={offers} />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
             <Login />
@@ -82,7 +82,6 @@ App.propTypes = {
   locations: PropTypes.arrayOf(
     PropTypes.string,
   ).isRequired,
-  placesFound: PropTypes.number,
   offers: PropTypes.arrayOf(
     offerType,
   ).isRequired,
