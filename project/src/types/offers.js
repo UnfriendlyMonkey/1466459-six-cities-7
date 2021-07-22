@@ -1,16 +1,24 @@
-import {object, arrayOf, bool, shape, number, string} from 'prop-types';
+import {arrayOf, bool, shape, number, string, objectOf} from 'prop-types';
 
 export const offerType = shape({
   bedrooms: number,
-  city: object,
+  city: shape({
+    location: objectOf(number),
+    name: string,
+  }),
   description: string,
   goods: arrayOf(string),
-  host: object,
+  host: shape({
+    avatarUrl: string,
+    id: number,
+    isPro: bool,
+    name: string,
+  }),
   id: number.isRequired,
   images: arrayOf(string),
   isFavorite: bool.isRequired,
   isPremium: bool.isRequired,
-  location: object,
+  location: objectOf(number),
   maxAdults: number,
   previewImage: string.isRequired,
   price: number.isRequired,

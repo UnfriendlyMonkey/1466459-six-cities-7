@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+const STARS = {'1': 'terribly', '2': 'badly', '3': 'not bad', '4': 'good', '5': 'perfect'};
+
 function CommentForm() {
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState('');
@@ -18,16 +20,14 @@ function CommentForm() {
 
   const isDisabled = (rating && comment) ? '' : 'disabled';
 
-  const stars = [['5', 'perfect'], ['4', 'good'], ['3', 'not bad'], ['2', 'badly'], ['1', 'terribly']];
-
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {stars.map((star) => (
-          <React.Fragment key={star[1]}>
-            <input className="form__rating-input visually-hidden" name="rating" value={star[0]} id={`${star[0]}-stars`} type="radio" onChange={handleRatingChange}/>
-            <label htmlFor={`${star[0]}-stars`} className="reviews__rating-label form__rating-label" title={star[1]}>
+        {Object.keys(STARS).reverse().map((star) => (
+          <React.Fragment key={STARS[star]}>
+            <input className="form__rating-input visually-hidden" name="rating" value={star} id={`${star}-stars`} type="radio" onChange={handleRatingChange}/>
+            <label htmlFor={`${star}-stars`} className="reviews__rating-label form__rating-label" title={STARS[star]}>
               <svg className="form__star-image" width="37" height="33">
                 <use xlinkHref="#icon-star"></use>
               </svg>
